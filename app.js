@@ -9,14 +9,14 @@ const { log } = require('console');
 let jsonParser = bodyParser.json()
 
 const corsOptions = {
-    origin: 'http://localhost:4200',
+    origin: '*',
     credentials: true,
     optionSuccessStatus: 200
 }
 
 app.use(cors(corsOptions));
 app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', "http://localhost:4200");
+    res.header('Access-Control-Allow-Origin', "*");
     res.header('Access-Control-Allow-Headers', true);
     res.header('Access-Control-Allow-Credentials', true);
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -147,6 +147,9 @@ req.eleve = eleve
   next();
 }
 
+app.get('/', (req, res) => {
+    res.send('Bienvenue sur le backend de Eleve-app.');
+  });
 // Liste tous les élèves
 app.get('/eleves', (req, res) => {
   res.json(eleves);
